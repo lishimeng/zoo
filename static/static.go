@@ -4,5 +4,5 @@ import (
 	"embed"
 )
 
-//go:embed assets/* favicon.ico index.html
+//go:embed css/* fonts/* images/* js/* layout/* index.html
 var Static embed.FS

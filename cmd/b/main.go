@@ -8,7 +8,7 @@ import (
 func main() {
 	err := buildscript.Generate("home",
 		"lishimeng",
-		"cmd/home/main.go", true)
+		"cmd/home/main.go", false)
 	if err != nil {
 		fmt.Println(err)
 	} else {

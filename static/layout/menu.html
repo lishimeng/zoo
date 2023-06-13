@@ -1,0 +1,22 @@
+<nav role="navigation" class="col-xs-12 col-sm-10 col-md-10 col-lg-10 navbar navbar-default">
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav">
+      {{- range $_, $item := .Header.Menu.Items }}
+      {{- if $item.Active }}
+      <li class="active">
+        {{- else }}
+      <li>
+        {{- end }}
+        <a
+                href="{{- $item.Link -}}"
+                {{- if $item.Outer }}
+                target="_blank"
+                {{- end}}
+        >{{- $item.Name -}}</a>
+      </li>
+      {{- end }}
+      <li style="justify-content: flex-end"><a>注册</a></li>
+      <li style="justify-content: flex-end"><a>登录</a></li>
+    </ul>
+  </div>
+</nav>

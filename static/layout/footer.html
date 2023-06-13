@@ -1,0 +1,25 @@
+<div class="container">
+    <!-- socil-icons -->
+    <!--
+    <section role="socil-icons" class="socil-icons">
+        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a>
+    </section>
+    -->
+    <!-- socil-icons -->
+    <!-- nav -->
+    {{- with .Footer.Policy }}
+    <nav role="footer-nav">
+        <a href="#">{{ .TermOfUse }}</a>
+        <a href="#">{{ .PrivatePolicy }}</a>
+    </nav>
+    {{- end }}
+    <!-- nav -->
+    {{- with .Footer.Copyright }}
+    <p class="copy">&copy;{{ .Description }}<a target="_blank" href="{{ .Link }}">{{ .Name }}</a></p>
+    {{- end }}
+</div>

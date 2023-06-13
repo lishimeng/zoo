@@ -6,6 +6,7 @@ import (
 	"github.com/lishimeng/app-starter"
 	etc2 "github.com/lishimeng/app-starter/etc"
 	"github.com/lishimeng/go-log"
+	"github.com/lishimeng/home/cmd/home/api"
 	"github.com/lishimeng/home/internal/etc"
 	"github.com/lishimeng/home/internal/setup"
 	"github.com/lishimeng/home/static"
@@ -25,7 +26,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	time.Sleep(time.Second * 2)
+	time.Sleep(time.Millisecond * 200)
 }
 
 func _main() (err error) {
@@ -47,6 +48,7 @@ func _main() (err error) {
 			EnableStaticWeb(func() http.FileSystem {
 				return http.FS(static.Static)
 			}).
+			EnableWeb(":80", api.Application).
 			ComponentBefore(setup.Setup).
 			PrintVersion()
 		return err
