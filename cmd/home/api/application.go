@@ -1,14 +1,35 @@
 package api
 
 import (
+	"fmt"
 	"github.com/kataras/iris/v12"
 	"github.com/lishimeng/home/static"
+	"html/template"
+	"regexp"
+	"strings"
 )
 
 func Application(app *iris.Application) {
-	app.RegisterView(iris.HTML(static.Static, ".html"))
+
+	engine := iris.HTML(static.Static, ".html")
+	engine.AddFunc("indent", Indent)
+	engine.AddFunc("nindent", nIndent)
+	app.RegisterView(engine)
 	app.Get("/", index)
 	return
+}
+
+func Indent(n int, html template.HTML) template.HTML {
+	startOfLine := regexp.MustCompile(`(?m)^`)
+	indentation := strings.Repeat(" ", n)
+	return template.HTML(startOfLine.ReplaceAllLiteralString(string(html), indentation))
+}
+
+func nIndent(n int, html template.HTML) template.HTML {
+	startOfLine := regexp.MustCompile(`(?m)^`)
+	indentation := strings.Repeat(" ", n)
+	text := startOfLine.ReplaceAllLiteralString(string(html), indentation)
+	return template.HTML(fmt.Sprintf("\n%s", text))
 }
 
 func index(ctx iris.Context) {
@@ -17,16 +38,22 @@ func index(ctx iris.Context) {
 
 	var data IndexPage
 
-	data.Header.Logo = Logo{
-		Title: "标题",
-		Url:   "#headere-top",
-		Image: "images/logo.png",
+	data.Metas = Metas{
+		Keywords:    "主页,cms生成",
+		Description: "页面的描述",
+		Title:       "一个页面标题,尽量简短",
+		Author:      "",
 	}
 
-	data.Header.Banner = Banner{
+	data.Header.Logo = Logo{
+		Url:   "https://baidu.com",
+		Image: "assets/images/logo.png",
+	}
+
+	data.Banner = Banner{
 		Title:    "首页标题",
 		SubTitle: "首页子标题，可以写长一点",
-		Image:    "images/banner-image.jpg",
+		Image:    "assets/images/slider-dec.png",
 	}
 
 	data.Footer.Copyright = CopyrightTag{
@@ -66,6 +93,7 @@ func index(ctx iris.Context) {
 		},
 	}
 	data.Header.Menu.Items = menus
+	data.Header.Menu.Login = "https://passport.baidu.com"
 
 	ctx.ViewLayout("layout/main")
 	err = ctx.View("index.html", data)

@@ -1,17 +1,16 @@
-<div class="header-fixed-wrapper" role="header-fixed">
-    <div class="container">
-        <!-- hgroup -->
-        <hgroup class="row">
-            <!-- logo -->
-            {{ render "layout/logo.html" . }}
-            <!-- logo -->
-            <!-- nav -->
-            {{ render "layout/menu.html" . }}
-            <!-- nav -->
-        </hgroup>
-        <!-- hgroup -->
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          {{- render "layout/header/logo.html" . | nindent 10 }}
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          {{- render "layout/header/menu.html" . | nindent 10 }}
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
     </div>
-</div>
-<!-- banner Text -->
-{{ render "layout/banner.html" . }}
-<!-- banner image -->
+  </div>
+</header>

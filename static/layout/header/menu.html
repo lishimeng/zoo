@@ -1,0 +1,19 @@
+<ul class="nav">
+  {{- range $_, $item := .Header.Menu.Items }}
+  <li class="scroll-to-section">
+    <a
+  {{- if $item.Active }}
+            class="active"
+  {{- end }}
+            href="{{- $item.Link -}}"
+            {{- if $item.Outer }}
+            target="_blank"
+            {{- end }}
+    >{{- $item.Name -}}</a>
+  </li>
+  {{- end }}
+  <li><div class="gradient-button"><a id="modal_trigger" target="_blank" href="{{ .Header.Menu.Login }}"><i class="fa fa-sign-in-alt"></i> 注册/登录</a></div></li>
+</ul>
+<a class='menu-trigger'>
+  <span>Menu</span>
+</a>
