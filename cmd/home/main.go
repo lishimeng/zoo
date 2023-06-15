@@ -6,13 +6,16 @@ import (
 	"github.com/lishimeng/app-starter"
 	etc2 "github.com/lishimeng/app-starter/etc"
 	"github.com/lishimeng/go-log"
+	persistence "github.com/lishimeng/go-orm"
 	"github.com/lishimeng/home/cmd/home/api"
+	"github.com/lishimeng/home/internal/db/model"
 	"github.com/lishimeng/home/internal/etc"
 	"github.com/lishimeng/home/internal/setup"
 	"github.com/lishimeng/home/static"
 	"net/http"
 	"time"
 )
+import _ "github.com/lib/pq"
 
 func main() {
 
@@ -37,6 +40,7 @@ func _main() (err error) {
 	err = application.Start(func(ctx context.Context, builder *app.ApplicationBuilder) error {
 
 		var err error
+
 		err = builder.LoadConfig(&etc.Config, func(loader etc2.Loader) {
 			loader.SetFileSearcher(configName, ".").SetEnvPrefix("").SetEnvSearcher()
 		})
@@ -44,7 +48,19 @@ func _main() (err error) {
 			return err
 		}
 
-		builder.
+		dbConfig := persistence.PostgresConfig{
+			UserName:  etc.Config.Db.User,
+			Password:  etc.Config.Db.Password,
+			Host:      etc.Config.Db.Host,
+			Port:      etc.Config.Db.Port,
+			DbName:    etc.Config.Db.Database,
+			InitDb:    true,
+			AliasName: "default",
+			SSL:       etc.Config.Db.Ssl,
+		}
+
+		builder.EnableDatabase(dbConfig.Build(),
+			model.Tables()...).
 			EnableStaticWeb(func() http.FileSystem {
 				return http.FS(static.Static)
 			}).

@@ -1,0 +1,8 @@
+{{- with .Footer.CompanyAddress }}
+<div class="footer-widget">
+  <h4>联系我们</h4>
+  <p>{{ .Addr }}</p>
+  <p><a href="{{ .Call.Url }}">{{ .Call.Name }}</a></p>
+  <p><a href="{{ .Email.Url }}">{{ .Email.Name }}</a></p>
+</div>
+{{- end}}

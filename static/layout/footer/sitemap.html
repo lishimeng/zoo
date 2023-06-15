@@ -1,0 +1,14 @@
+<div class="footer-widget">
+    <h4>链接地图</h4>
+    <ul>
+        {{- range $i, $item := .Footer.SiteMap.Links }}
+        <li><a target="_blank" href="{{ $item.Url }}">{{ $item.Name }}</a></li>
+        {{- if gt $i 0 }}
+        {{- if mod $i 4 0 }}
+    </ul>
+    <ul>
+        {{- end }}
+        {{- end }}
+        {{- end }}
+    </ul>
+</div>

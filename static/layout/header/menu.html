@@ -1,11 +1,7 @@
 <ul class="nav">
   {{- range $_, $item := .Header.Menu.Items }}
   <li class="scroll-to-section">
-    <a
-  {{- if $item.Active }}
-            class="active"
-  {{- end }}
-            href="{{- $item.Link -}}"
+    <a href="{{- $item.Url -}}"
             {{- if $item.Outer }}
             target="_blank"
             {{- end }}

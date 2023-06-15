@@ -1,0 +1,9 @@
+{{- with .Footer.CompanyDescribe }}
+<div class="footer-widget">
+    <h4>企业介绍</h4>
+    <div class="logo">
+        <img src="{{ .Media }}" alt="">
+    </div>
+    <p>{{ .Describe }}</p>
+</div>
+{{- end }}

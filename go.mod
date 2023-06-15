@@ -4,8 +4,10 @@ go 1.20
 
 require (
 	github.com/kataras/iris/v12 v12.2.0
+	github.com/lib/pq v1.10.5
 	github.com/lishimeng/app-starter v1.11.1
 	github.com/lishimeng/go-log v1.0.0
+	github.com/lishimeng/go-orm v1.2.2
 )
 
 require (
@@ -43,7 +45,6 @@ require (
 	github.com/kataras/tunnel v0.0.4 // indirect
 	github.com/klauspost/compress v1.16.0 // indirect
 	github.com/lishimeng/go-app-shutdown v1.0.1 // indirect
-	github.com/lishimeng/go-orm v1.2.2 // indirect
 	github.com/lishimeng/log4go v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
 	github.com/mailgun/raymond/v2 v2.0.48 // indirect

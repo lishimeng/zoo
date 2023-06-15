@@ -25,9 +25,7 @@ type Header struct {
 }
 
 type Logo struct {
-	Title string
-	Url   string
-	Image string
+	Link
 }
 
 type Banner struct {
@@ -40,31 +38,58 @@ type Banner struct {
 type Footer struct {
 	Copyright CopyrightTag
 	Policy    PolicyTag
+
+	CompanyDescribe CompanyDescribe
+	CompanyAddress  CompanyAddress
+	FriendlyLinks   FriendlyLinks
+	SiteMap         SiteMap
 }
 
 // CopyrightTag 版权
 type CopyrightTag struct {
 	Description string
-	Link        string
-	Name        string
+	Link
 }
 
 // PolicyTag 免责
 type PolicyTag struct {
-	TermOfUse     string
-	PrivatePolicy string
+	TermOfUse     Link
+	PrivatePolicy Link
 }
 
 // Menu 菜单
 type Menu struct {
-	Items []MenuItem
-	Login string
+	Items []Link
+	Login Link
 }
 
 // MenuItem 菜单条目
 type MenuItem struct {
-	Link   string
-	Name   string
-	Active bool // 激活(外链不可设置激活)
-	Outer  bool // 外链
+	Link
+}
+
+type CompanyAddress struct {
+	Addr  string
+	Email Link
+	Call  Link
+}
+
+type SiteMap struct {
+	Links []Link
+}
+
+type FriendlyLinks struct {
+	Links []Link
+}
+
+type Link struct {
+	Url   string
+	Name  string
+	Media string
+	Outer bool // 外链
+}
+
+type CompanyDescribe struct {
+	Logo
+	Describe string
 }
