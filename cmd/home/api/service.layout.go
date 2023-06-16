@@ -42,12 +42,6 @@ func getFriendlyLinks() (links []Link, err error) {
 	return
 }
 
-func getCopyRight() (link Link, err error) {
-	var webSite = 1
-	link, err = getLink(webSite, model.CategoryCopyright)
-	return
-}
-
 func getPolicy() (p PolicyTag, err error) {
 	var webSite = 1
 	policy, err := getLink(webSite, model.CategoryPrivatePolicy)
@@ -60,6 +54,18 @@ func getPolicy() (p PolicyTag, err error) {
 	}
 	p.PrivatePolicy = policy
 	p.TermOfUse = tou
+	return
+}
+
+func getPolice() (link Link, err error) {
+	var webSite = 1
+	link, err = getLink(webSite, model.CategoryPolice)
+	return
+}
+
+func getIcp() (link Link, err error) {
+	var webSite = 1
+	link, err = getLink(webSite, model.CategoryIcp)
 	return
 }
 

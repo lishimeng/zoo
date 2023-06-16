@@ -39,6 +39,9 @@ type Footer struct {
 	Copyright CopyrightTag
 	Policy    PolicyTag
 
+	Icp    Link
+	Police Link
+
 	CompanyDescribe CompanyDescribe
 	CompanyAddress  CompanyAddress
 	FriendlyLinks   FriendlyLinks
@@ -70,8 +73,8 @@ type MenuItem struct {
 
 type CompanyAddress struct {
 	Addr  string
-	Email Link
-	Call  Link
+	Email string
+	Call  string
 }
 
 type SiteMap struct {

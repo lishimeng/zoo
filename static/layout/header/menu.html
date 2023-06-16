@@ -8,7 +8,13 @@
     >{{- $item.Name -}}</a>
   </li>
   {{- end }}
-  <li><div class="gradient-button"><a id="modal_trigger" target="_blank" href="{{ .Header.Menu.Login }}"><i class="fa fa-sign-in-alt"></i> 注册/登录</a></div></li>
+  {{- with .Header.Menu.Login }}
+  <li>
+    <div class="gradient-button">
+      <a id="modal_trigger" target="_blank" href="{{ .Url }}">{{ .Name }}</a>
+    </div>
+  </li>
+  {{- end }}
 </ul>
 <a class='menu-trigger'>
   <span>Menu</span>

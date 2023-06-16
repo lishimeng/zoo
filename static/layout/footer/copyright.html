@@ -1,5 +1,16 @@
-{{- with .Footer.Copyright }}
 <div class="copyright-text">
-  <p>Copyright &copy; {{ .Description }}<a target="_blank" href="{{ .Url }}">{{ .Name }}</a></p>
+  <p>
+    {{- with .Footer.Copyright }}
+    <span>Copyright &copy; {{ .Description }}</span>
+    <a target="_blank" href="{{ .Url }}">{{ .Name }}</a>
+    {{- end}}
+    <span>|</span>
+    {{- with .Footer.Icp }}
+    <a target="_blank" href="{{ .Url }}">{{ .Name }}</a>
+    {{- end }}
+    <span>|</span>
+    {{- with .Footer.Police }}
+    <a target="_blank" href="{{ .Url }}">{{ .Name }}</a>
+    {{- end }}
+  </p>
 </div>
-{{- end}}

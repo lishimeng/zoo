@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"github.com/kataras/iris/v12"
 	"github.com/lishimeng/home/internal/db/model"
 )
@@ -69,37 +68,41 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 		return
 	}
 
-	copyright, err := getCopyRight()
 	if err != nil {
 		return
 	}
 	footer.Copyright = CopyrightTag{
 		Description: ws.Copyright,
-		Link:        copyright,
+		Link: Link{
+			Name: ws.Name,
+		},
 	}
 
 	footer.Policy, err = getPolicy()
 	if err != nil {
 		return
 	}
+
+	footer.Police, err = getPolice()
+	if err != nil {
+		return
+	}
+
+	footer.Icp, err = getIcp()
+	if err != nil {
+		return
+	}
+
 	footer.CompanyDescribe = CompanyDescribe{
 		Logo:     Logo{Link: logoLink},
 		Describe: ws.CompanyDescribe,
 	}
 
 	footer.CompanyAddress = CompanyAddress{
-		Addr: ws.CompanyAddress,
-		Email: Link{
-			Name:  ws.CompanyEmail,
-			Outer: true,
-		},
-		Call: Link{
-			Name:  ws.CompanyTel,
-			Outer: false,
-		},
+		Addr:  ws.CompanyAddress,
+		Email: ws.CompanyEmail,
+		Call:  ws.CompanyTel,
 	}
-	footer.CompanyAddress.Email.Url = fmt.Sprintf("mailto:%s", footer.CompanyAddress.Email.Name)
-	footer.CompanyAddress.Call.Url = fmt.Sprintf("tel:%s", footer.CompanyAddress.Call.Name)
 
 	friendlyLinks, err := getFriendlyLinks()
 	if err != nil {

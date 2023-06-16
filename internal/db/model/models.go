@@ -4,6 +4,7 @@ import "github.com/lishimeng/app-starter"
 
 type WebSite struct {
 	app.Pk
+	Name            string `orm:"column(name);null"`
 	PageKeywords    string `orm:"column(page_keywords);null"`
 	PageDescription string `orm:"column(page_description);null"`
 	PageTitle       string `orm:"column(page_title);null"`
@@ -29,15 +30,19 @@ type Resource struct {
 	Index     int    `orm:"column(index);null"`    // 排序
 }
 
+type Menu struct {
+}
+
 const (
 	CategoryHeaderMenu    = "header_menu"
 	CategorySiteMap       = "site_map"
 	CategoryFriendlyLink  = "friend_link"
 	CategoryLogo          = "logo"
 	CategoryLogIn         = "login"
-	CategoryCopyright     = "copyright"
 	CategoryTermOfUse     = "term_of_use"
 	CategoryPrivatePolicy = "private_policy"
+	CategoryIcp           = "icp"
+	CategoryPolice        = "police"
 )
 
 const (
