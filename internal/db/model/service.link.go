@@ -22,6 +22,7 @@ func GetResources(webSite int, category string) (link []Resource, err error) {
 	_, err = app.GetOrm().Context.QueryTable(new(Resource)).
 		Filter("WebSiteId", webSite).
 		Filter("Category", category).
+		OrderBy("index").
 		All(&link)
 	return
 }
