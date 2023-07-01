@@ -6,9 +6,13 @@ import (
 )
 
 func main() {
-	err := buildscript.Generate("home",
-		"lishimeng",
-		"cmd/home/main.go", false)
+	err := buildscript.Generate("lishimeng",
+		buildscript.Application{
+			Name:    "home",
+			AppPath: "cmd/home",
+			HasUI:   false,
+		},
+	)
 	if err != nil {
 		fmt.Println(err)
 	} else {
