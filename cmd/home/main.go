@@ -64,7 +64,7 @@ func _main() (err error) {
 			EnableStaticWeb(func() http.FileSystem {
 				return http.FS(static.Static)
 			}).
-			EnableWeb(":80", api.Application).
+			EnableWeb(etc.Config.Web.Listen, api.Application).
 			ComponentBefore(setup.Setup).
 			PrintVersion()
 		return err
