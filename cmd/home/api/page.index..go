@@ -104,19 +104,13 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 		Call:  ws.CompanyTel,
 	}
 
-	friendlyLinks, err := getFriendlyLinks()
-	if err != nil {
-		return
-	}
-	footer.FriendlyLinks = FriendlyLinks{
-		Links: friendlyLinks,
-	}
-	links, err = getSiteMap()
-	if err != nil {
-		return
-	}
 	footer.SiteMap = SiteMap{
 		Links: links,
+	}
+
+	footer.Links, err = GetFooterLinks()
+	if err != nil {
+		return
 	}
 	return
 }
@@ -141,47 +135,3 @@ func buildHeader(_ model.WebSite) (header Header, err error) {
 	}
 	return
 }
-
-//func getHeaderMenus() (menus []Link) {
-//	menus = []Link{
-//		{
-//			Url:  "#headere-top",
-//			Name: "首页",
-//		},
-//		{
-//			Url:  "#section-one",
-//			Name: "关于我们",
-//		},
-//		{
-//			Url:  "#section-two",
-//			Name: "产品",
-//		},
-//		{
-//			Url:   "https://qq.com",
-//			Name:  "联系方式",
-//			Outer: true,
-//		},
-//		{
-//			Url:   "https://baidu.com",
-//			Name:  "加入",
-//			Outer: true,
-//		},
-//	}
-//	return
-//}
-
-//func getLogo() (logo Logo) {
-//	logo = Logo{
-//		Link: Link{
-//			Url:   "https://baidu.com",
-//			Media: "assets/images/logo.png",
-//		},
-//	}
-//	return
-//}
-
-//func getFriendlyLinks() (links []Link) {
-//
-//	links = getHeaderMenus()
-//	return
-//}

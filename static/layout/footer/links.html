@@ -1,0 +1,17 @@
+{{- range $_, $group := .Footer.Links }}
+<div class="col-lg-3 col-md-6">
+    <h5>{{ $group.Name }}</h5>
+    <ul class="links list-unstyled">
+        {{- range $_, $item := $group.Links }}
+        <li>
+            <a
+                    href="{{- $item.Url -}}"
+                    {{- if $item.Outer }}
+                    target="_blank"
+                    {{- end }}
+            >{{- $item.Name -}}</a>
+        </li>
+        {{- end }}
+    </ul>
+</div>
+{{- end }}

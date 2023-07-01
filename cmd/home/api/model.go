@@ -46,6 +46,12 @@ type Footer struct {
 	CompanyAddress  CompanyAddress
 	FriendlyLinks   FriendlyLinks
 	SiteMap         SiteMap
+	Links           []FooterLinks
+}
+
+type FooterLinks struct {
+	Links Links
+	Name  string
 }
 
 // CopyrightTag 版权
@@ -89,6 +95,7 @@ type Link struct {
 	Url   string
 	Name  string
 	Media string
+	Index int
 	Outer bool // 外链
 }
 

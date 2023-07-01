@@ -1,21 +1,26 @@
-<ul class="nav">
-  {{- range $_, $item := .Header.Menu.Items }}
-  <li class="scroll-to-section">
-    <a href="{{- $item.Url -}}"
-            {{- if $item.Outer }}
-            target="_blank"
-            {{- end }}
-    >{{- $item.Name -}}</a>
-  </li>
-  {{- end }}
-  {{- with .Header.Menu.Login }}
-  <li>
-    <div class="gradient-button">
-      <a id="modal_trigger" target="_blank" href="{{ .Url }}">{{ .Name }}</a>
+<button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">
+    <span></span><span></span><span></span>
+</button>
+<div id="navbarSupportedContent" class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
+        {{- range $_, $item := .Header.Menu.Items }}
+        <li class="nav-item">
+            <a href="{{- $item.Url -}}"
+               class="nav-link link-scroll"
+               {{- if $item.Outer }}
+               target="_blank"
+               {{- end }}
+            >{{- $item.Name -}}</a>
+        </li>
+        {{- end }}
+    </ul>
+    <div class="navbar-text">
+        {{- with .Header.Menu.Login }}
+        <a href="#"
+           class="btn btn-primary navbar-btn btn-shadow btn-gradient"
+           target="_blank"
+           href="{{ .Url }}"
+        >{{ .Name }}</a>
+        {{- end }}
     </div>
-  </li>
-  {{- end }}
-</ul>
-<a class='menu-trigger'>
-  <span>Menu</span>
-</a>
+</div>

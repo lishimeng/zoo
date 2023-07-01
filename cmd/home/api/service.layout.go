@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/lishimeng/app-starter"
 	"github.com/lishimeng/home/internal/db/model"
+	"sort"
 )
 
 func getWebsite() (ws model.WebSite, err error) {
@@ -98,5 +99,49 @@ func getLinks(webSite int, category string) (links []Link, err error) {
 
 func getSiteMap() (menus []Link, err error) {
 	menus, err = getLinks(1, model.CategorySiteMap)
+	return
+}
+
+type Links []Link
+
+func (s Links) Len() int           { return len(s) }
+func (s Links) Less(i, j int) bool { return s[i].Index < s[j].Index }
+func (s Links) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
+
+func GetFooterLinks() (footer []FooterLinks, err error) {
+	var webSite = 1
+	resources, err := model.GetFooterResources(webSite)
+	if err != nil {
+		return
+	}
+	groups, err := model.GetFooterGroups(webSite)
+	if err != nil {
+		return
+	}
+	groupDetails, err := model.GetFooterGroupDetails(webSite)
+	if err != nil {
+		return
+	}
+	for _, g := range groups {
+		var f = FooterLinks{Name: g.Name}
+		for _, detail := range groupDetails {
+			if detail.ResourceGroupId == g.Id {
+				for _, r := range resources {
+					if r.Id == detail.ResourceId {
+						var link = Link{
+							Url:   r.Url,
+							Name:  r.Name,
+							Media: r.Media,
+							Index: r.Index,
+							Outer: r.OutLink == 1,
+						}
+						f.Links = append(f.Links, link)
+					}
+				}
+			}
+		}
+		sort.Sort(f.Links)
+		footer = append(footer, f)
+	}
 	return
 }

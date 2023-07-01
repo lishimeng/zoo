@@ -17,6 +17,7 @@ type WebSite struct {
 	CompanyAddress  string `orm:"column(company_address);null"`
 	CompanyTel      string `orm:"column(company_tel);null"`
 	CompanyEmail    string `orm:"column(company_email);null"`
+	app.TableChangeInfo
 }
 
 type Resource struct {
@@ -28,9 +29,23 @@ type Resource struct {
 	Media     string `orm:"column(media);null"`
 	Category  string `orm:"column(category);null"` // 类型
 	Index     int    `orm:"column(index);null"`    // 排序
+	app.TableChangeInfo
 }
 
-type Menu struct {
+type ResourceGroup struct {
+	app.Pk
+	WebSiteId int    `orm:"column(web_site);null"`
+	Name      string `orm:"column(name);null"`
+	Index     int    `orm:"column(index);null"` // 排序
+	app.TableChangeInfo
+}
+
+type GroupDetail struct {
+	app.Pk
+	WebSiteId       int `orm:"column(web_site);null"`
+	ResourceId      int `orm:"column(resource_id);null"`
+	ResourceGroupId int `orm:"column(resource_group_id);null"`
+	app.TableInfo
 }
 
 const (
@@ -43,6 +58,7 @@ const (
 	CategoryPrivatePolicy = "private_policy"
 	CategoryIcp           = "icp"
 	CategoryPolice        = "police"
+	CategoryFooter        = "footer"
 )
 
 const (
@@ -54,6 +70,8 @@ func Tables() (t []interface{}) {
 	t = append(t,
 		new(WebSite),
 		new(Resource),
+		new(ResourceGroup),
+		new(GroupDetail),
 	)
 	return
 }

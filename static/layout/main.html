@@ -1,46 +1,38 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     {{- render "layout/meta.html" . | nindent 4 }}
-    <style>
-      .copyright-text a{
-        margin-left: 15px;
-        margin-right: 15px;
-      }
-    </style>
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="css/landy-iconfont.css">
+    <!-- Google fonts - Open Sans-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+    <!-- owl carousel-->
+    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.carousel.css">
+    <link rel="stylesheet" href="vendor/owl.carousel/assets/owl.theme.default.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
   </head>
-<body>
+  <body>
+    <!-- navbar-->
+    {{- render "layout/header.html" . | nindent 4 }}
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
+    {{- render "layout/banner.html" . | nindent 4 }}
 
-  <!-- ***** Header Area Start ***** -->
-  {{- render "layout/header.html" . | nindent 2 }}
-  <!-- ***** Header Area End ***** -->
-
-  {{- render "layout/banner.html" . | nindent 2 }}
-
-  {{ yield . | nindent 2 }}
-
-  {{- render "layout/footer.html" . | nindent 2 }}
-  <!-- Scripts -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/owl-carousel.js"></script>
-  <script src="assets/js/animation.js"></script>
-  <script src="assets/js/imagesloaded.js"></script>
-  <script src="assets/js/popup.js"></script>
-  <script src="assets/js/custom.js"></script>
-</body>
+    {{- render "layout/footer.html" . | nindent 4 }}
+    <!-- Javascript files-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="js/front.js"></script>
+  </body>
 </html>
