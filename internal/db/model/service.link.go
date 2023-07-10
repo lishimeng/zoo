@@ -27,12 +27,16 @@ func GetResources(webSite int, category string) (link []Resource, err error) {
 	return
 }
 
-func AddLink(ctx persistence.TxContext, d Resource) (link Resource, err error) {
+func AddLink(ctx persistence.TxContext, d Resource, isOuterLink bool) (link Resource, err error) {
 
+	if isOuterLink {
+		link.OutLink = LinkOuter
+	} else {
+		link.OutLink = LinkInner
+	}
 	link.WebSiteId = d.WebSiteId
 	link.Name = d.Name
 	link.Url = d.Url
-	link.OutLink = d.OutLink
 	link.Media = d.Media
 	link.Category = d.Category
 	link.Index = d.Index

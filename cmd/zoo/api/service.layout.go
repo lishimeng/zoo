@@ -37,12 +37,6 @@ func getLogo() (link Link, err error) {
 	return
 }
 
-func getFriendlyLinks() (links []Link, err error) {
-	var webSite = 1
-	links, err = getLinks(webSite, model.CategoryFriendlyLink)
-	return
-}
-
 func getPolicy() (p PolicyTag, err error) {
 	var webSite = 1
 	policy, err := getLink(webSite, model.CategoryPrivatePolicy)
@@ -91,14 +85,9 @@ func getLinks(webSite int, category string) (links []Link, err error) {
 			Name:  t.Name,
 			Media: t.Media,
 		}
-		menu.Outer = t.OutLink == model.Link_outer
+		menu.Outer = t.OutLink == model.LinkOuter
 		links = append(links, menu)
 	}
-	return
-}
-
-func getSiteMap() (menus []Link, err error) {
-	menus, err = getLinks(1, model.CategorySiteMap)
 	return
 }
 

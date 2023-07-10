@@ -50,8 +50,6 @@ type GroupDetail struct {
 
 const (
 	CategoryHeaderMenu    = "header_menu"
-	CategorySiteMap       = "site_map"
-	CategoryFriendlyLink  = "friend_link"
 	CategoryLogo          = "logo"
 	CategoryLogIn         = "login"
 	CategoryTermOfUse     = "term_of_use"
@@ -62,8 +60,8 @@ const (
 )
 
 const (
-	Link_Inner = iota
-	Link_outer
+	LinkInner = iota
+	LinkOuter
 )
 
 func Tables() (t []interface{}) {
