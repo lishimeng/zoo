@@ -4,7 +4,7 @@ Zoo
 [![issues](https://img.shields.io/github/issues/lishimeng/zoo)](https://github.com/lishimeng/zoo)
 [![Go Report Card](https://goreportcard.com/badge/github.com/lishimeng%2Fzoo?style=flat-square)](https://goreportcard.com/report/github.com/lishimeng%2Fzoo)
 [![License](https://img.shields.io/github/license/lishimeng/zoo)](https://github.com/lishimeng/zoo)
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/zoo)](https://artifacthub.io/packages/search?repo=zoo)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/xd)](https://artifacthub.io/packages/search?repo=xd)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/lishimeng/zoo/main)](https://github.com/lishimeng/zoo)
 [![Docker pull](https://img.shields.io/docker/pulls/lishimeng/zoo)](https://hub.docker.com/r/lishimeng/zoo)
 
