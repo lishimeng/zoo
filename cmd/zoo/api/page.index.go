@@ -2,6 +2,7 @@ package api
 
 import (
 	"github.com/kataras/iris/v12"
+	"github.com/lishimeng/app-starter/tool"
 	"github.com/lishimeng/home/internal/db/model"
 	"github.com/lishimeng/home/internal/etc"
 )
@@ -13,6 +14,10 @@ func indexPage(ctx iris.Context) {
 	var data IndexPage
 
 	var wsId = etc.Config.Web.WebSiteId
+	if wsId <= 0 {
+		ctx.StatusCode(tool.RespCodeNotFound)
+		return
+	}
 
 	ws, err := getWebsite(wsId)
 	if err != nil {
