@@ -9,7 +9,7 @@ func main() {
 	err := buildscript.Generate("lishimeng",
 		buildscript.Application{
 			Name:    "zoo",
-			AppPath: "cmd/home",
+			AppPath: "cmd/zoo",
 			HasUI:   false,
 		},
 	)

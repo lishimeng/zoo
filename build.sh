@@ -50,7 +50,7 @@ push_image(){
 
 build_all(){
   checkout_tag
-  build_image 'zoo' 'cmd/home'
+  build_image 'zoo' 'cmd/zoo'
 }
 
 push_all(){
