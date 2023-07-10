@@ -17,6 +17,7 @@ type Metas struct {
 	Description string
 	Title       string
 	Author      string
+	Favicon     string
 }
 
 type Header struct {
@@ -32,6 +33,7 @@ type Banner struct {
 	Title    string
 	SubTitle string
 	Image    string
+	Links    []Link
 }
 
 // Footer 底部区域

@@ -6,8 +6,7 @@ import (
 	"sort"
 )
 
-func getWebsite() (ws model.WebSite, err error) {
-	var webSite = 1
+func getWebsite(webSite int) (ws model.WebSite, err error) {
 	var tmp []model.WebSite
 	_, err = app.GetOrm().Context.QueryTable(new(model.WebSite)).
 		Filter("id", webSite).
@@ -19,26 +18,22 @@ func getWebsite() (ws model.WebSite, err error) {
 	return
 }
 
-func getHeaderMenus() (menus []Link, err error) {
-	var webSite = 1
+func getHeaderMenus(webSite int) (menus []Link, err error) {
 	menus, err = getLinks(webSite, model.CategoryHeaderMenu)
 	return
 }
 
-func getLogin() (link Link, err error) {
-	var webSite = 1
+func getLogin(webSite int) (link Link, err error) {
 	link, err = getLink(webSite, model.CategoryLogIn)
 	return
 }
 
-func getLogo() (link Link, err error) {
-	var webSite = 1
+func getLogo(webSite int) (link Link, err error) {
 	link, err = getLink(webSite, model.CategoryLogo)
 	return
 }
 
-func getPolicy() (p PolicyTag, err error) {
-	var webSite = 1
+func getPolicy(webSite int) (p PolicyTag, err error) {
 	policy, err := getLink(webSite, model.CategoryPrivatePolicy)
 	if err != nil {
 		return
@@ -52,14 +47,12 @@ func getPolicy() (p PolicyTag, err error) {
 	return
 }
 
-func getPolice() (link Link, err error) {
-	var webSite = 1
+func getPolice(webSite int) (link Link, err error) {
 	link, err = getLink(webSite, model.CategoryPolice)
 	return
 }
 
-func getIcp() (link Link, err error) {
-	var webSite = 1
+func getIcp(webSite int) (link Link, err error) {
 	link, err = getLink(webSite, model.CategoryIcp)
 	return
 }
@@ -97,8 +90,25 @@ func (s Links) Len() int           { return len(s) }
 func (s Links) Less(i, j int) bool { return s[i].Index < s[j].Index }
 func (s Links) Swap(i, j int)      { s[i], s[j] = s[j], s[i] }
 
-func GetFooterLinks() (footer []FooterLinks, err error) {
-	var webSite = 1
+func GetBannerLinks(webSite int) (links []Link, err error) {
+	resources, err := model.GetResources(webSite, model.CategoryBanner)
+	if err != nil {
+		return
+	}
+	for _, r := range resources {
+		var link = Link{
+			Url:   r.Url,
+			Name:  r.Name,
+			Media: r.Media,
+			Index: r.Index,
+			Outer: r.OutLink == model.LinkOuter,
+		}
+		links = append(links, link)
+	}
+	return
+}
+
+func GetFooterLinks(webSite int) (footer []FooterLinks, err error) {
 	resources, err := model.GetFooterResources(webSite)
 	if err != nil {
 		return
@@ -122,7 +132,7 @@ func GetFooterLinks() (footer []FooterLinks, err error) {
 							Name:  r.Name,
 							Media: r.Media,
 							Index: r.Index,
-							Outer: r.OutLink == 1,
+							Outer: r.OutLink == model.LinkOuter,
 						}
 						f.Links = append(f.Links, link)
 					}

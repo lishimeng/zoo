@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/beego/beego/v2/client/orm"
 	"github.com/lishimeng/app-starter"
 	etc2 "github.com/lishimeng/app-starter/etc"
 	"github.com/lishimeng/go-log"
@@ -18,6 +19,7 @@ import (
 import _ "github.com/lib/pq"
 
 func main() {
+	orm.Debug = true
 
 	defer func() {
 		if err := recover(); err != nil {

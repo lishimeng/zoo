@@ -6,8 +6,9 @@ type Configuration struct {
 }
 
 type web struct {
-	Listen string `toml:"listen"`
-	Cache  int    `toml:"cache"`
+	Listen    string `toml:"listen"`
+	Cache     int    `toml:"cache"`
+	WebSiteId int    `toml:"webSiteId"`
 }
 
 type db struct {

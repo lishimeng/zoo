@@ -17,6 +17,7 @@ type WebSite struct {
 	CompanyAddress  string `orm:"column(company_address);null"`
 	CompanyTel      string `orm:"column(company_tel);null"`
 	CompanyEmail    string `orm:"column(company_email);null"`
+	Favicon         string `orm:"column(favicon);null"`
 	app.TableChangeInfo
 }
 
@@ -52,6 +53,7 @@ const (
 	CategoryHeaderMenu    = "header_menu"
 	CategoryLogo          = "logo"
 	CategoryLogIn         = "login"
+	CategoryBanner        = "banner"
 	CategoryTermOfUse     = "term_of_use"
 	CategoryPrivatePolicy = "private_policy"
 	CategoryIcp           = "icp"

@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/lishimeng/home/internal/db/model"
+	"github.com/lishimeng/home/internal/etc"
 )
 
 func indexPage(ctx iris.Context) {
@@ -11,14 +12,19 @@ func indexPage(ctx iris.Context) {
 
 	var data IndexPage
 
-	ws, err := getWebsite()
+	var wsId = etc.Config.Web.WebSiteId
+
+	ws, err := getWebsite(wsId)
 	if err != nil {
 		return
 	}
 
 	data.Metas = buildMetas(ws)
 
-	data.Banner = buildBanner(ws)
+	data.Banner, err = buildBanner(ws)
+	if err != nil {
+		return
+	}
 
 	data.Footer, err = buildFooter(ws)
 	if err != nil {
@@ -45,16 +51,22 @@ func buildMetas(ws model.WebSite) (metas Metas) {
 		Description: ws.PageDescription,
 		Title:       ws.PageTitle,
 		Author:      ws.PageAuthor,
+		Favicon:     ws.Favicon,
 	}
 	return
 }
 
-func buildBanner(ws model.WebSite) (banner Banner) {
+func buildBanner(ws model.WebSite) (banner Banner, err error) {
 	banner = Banner{
 		Title:    ws.BannerTitle,
 		SubTitle: ws.BannerSubTitle,
 		Image:    ws.BannerMedia,
 	}
+	links, err := GetBannerLinks(ws.Id)
+	if err != nil {
+		return
+	}
+	banner.Links = links
 	return
 }
 
@@ -63,7 +75,7 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 	var links []Link
 	var logoLink Link
 
-	logoLink, err = getLogo()
+	logoLink, err = getLogo(ws.Id)
 	if err != nil {
 		return
 	}
@@ -78,17 +90,17 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 		},
 	}
 
-	footer.Policy, err = getPolicy()
+	footer.Policy, err = getPolicy(ws.Id)
 	if err != nil {
 		return
 	}
 
-	footer.Police, err = getPolice()
+	footer.Police, err = getPolice(ws.Id)
 	if err != nil {
 		return
 	}
 
-	footer.Icp, err = getIcp()
+	footer.Icp, err = getIcp(ws.Id)
 	if err != nil {
 		return
 	}
@@ -108,28 +120,28 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 		Links: links,
 	}
 
-	footer.Links, err = GetFooterLinks()
+	footer.Links, err = GetFooterLinks(ws.Id)
 	if err != nil {
 		return
 	}
 	return
 }
 
-func buildHeader(_ model.WebSite) (header Header, err error) {
+func buildHeader(ws model.WebSite) (header Header, err error) {
 
 	var link Link
-	link, err = getLogo()
+	link, err = getLogo(ws.Id)
 	if err != nil {
 		return
 	}
 	header.Logo = Logo{Link: link}
 
-	menus, err := getHeaderMenus()
+	menus, err := getHeaderMenus(ws.Id)
 	if err != nil {
 		return
 	}
 	header.Menu.Items = menus
-	header.Menu.Login, err = getLogin()
+	header.Menu.Login, err = getLogin(ws.Id)
 	if err != nil {
 		return
 	}
