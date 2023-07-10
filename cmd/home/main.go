@@ -8,10 +8,10 @@ import (
 	"github.com/lishimeng/go-log"
 	persistence "github.com/lishimeng/go-orm"
 	"github.com/lishimeng/home/cmd/home/api"
+	"github.com/lishimeng/home/cmd/home/static"
 	"github.com/lishimeng/home/internal/db/model"
 	"github.com/lishimeng/home/internal/etc"
 	"github.com/lishimeng/home/internal/setup"
-	"github.com/lishimeng/home/static"
 	"net/http"
 	"time"
 )
