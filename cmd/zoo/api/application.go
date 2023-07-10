@@ -3,7 +3,7 @@ package api
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/lishimeng/app-starter/midware/template"
-	"github.com/lishimeng/home/cmd/home/static"
+	"github.com/lishimeng/home/cmd/zoo/static"
 	"github.com/lishimeng/home/internal/etc"
 	"time"
 )

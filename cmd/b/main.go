@@ -8,7 +8,7 @@ import (
 func main() {
 	err := buildscript.Generate("lishimeng",
 		buildscript.Application{
-			Name:    "home",
+			Name:    "zoo",
 			AppPath: "cmd/home",
 			HasUI:   false,
 		},

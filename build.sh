@@ -50,11 +50,11 @@ push_image(){
 
 build_all(){
   checkout_tag
-  build_image 'home' 'cmd/home'
+  build_image 'zoo' 'cmd/home'
 }
 
 push_all(){
-  push_image 'home'
+  push_image 'zoo'
 }
 
 case  $1 in
