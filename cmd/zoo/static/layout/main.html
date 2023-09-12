@@ -27,6 +27,7 @@
 
     {{- render "layout/footer.html" . | nindent 4 }}
     <!-- Javascript files-->
+    {{- yield . }}
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"> </script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

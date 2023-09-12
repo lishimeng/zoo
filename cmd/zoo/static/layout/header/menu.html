@@ -3,7 +3,7 @@
 </button>
 <div id="navbarSupportedContent" class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
-        {{- range $_, $item := .Header.Menu.Items }}
+        {{- range $_, $item := .PageCtx.Header.Menu.Items }}
         <li class="nav-item">
             <a href="{{- $item.Url -}}"
                class="nav-link link-scroll"
@@ -15,7 +15,7 @@
         {{- end }}
     </ul>
     <div class="navbar-text">
-        {{- with .Header.Menu.Login }}
+        {{- with .PageCtx.Header.Menu.Login }}
         <a
            class="btn btn-primary navbar-btn btn-shadow btn-gradient"
            target="_blank"

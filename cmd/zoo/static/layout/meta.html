@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-{{- with .Metas }}
+{{- with .PageCtx.Metas }}
 <meta name="description" content="{{ .Description }}">
 <meta name="author" content="{{ .Author }}">
 <title>{{ .Title }}</title>
@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
 
+{{- end }}
+{{- with .WebSiteCtx }}
+<base href="{{ .BaseUrl }}" >
+
 <!-- Favicon-->
 <link rel="shortcut icon" href="{{ .Favicon }}">
-{{- end}}
+{{- end }}

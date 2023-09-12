@@ -1,18 +1,13 @@
-
 <div class="copyrights">
     <div class="container">
         <div class="row">
 
             <div class="col-md-12">
                 <p>
-                    {{- with .Footer.Copyright }}
-                    Copyright &copy; {{ .Description }}
+                    {{- with .WebSiteCtx }}
+                    Copyright &copy; {{ .Copyright }}
                     <span> | </span>
-                    <a target="_blank" href="{{ .Url }}">{{ .Name }}</a>
-                    {{- end }}
-                    {{- with .Footer.Icp }}
-                    <span> | </span>
-                    <a href="https://beian.miit.gov.cn/" target="_blank">{{ .Name }}</a>
+                    <a href="https://beian.miit.gov.cn/" target="_blank">{{ .Icp }}</a>
                     {{- end }}
                 </p>
             </div>

@@ -6,10 +6,10 @@ import (
 	"sort"
 )
 
-func getWebsite(webSite int) (ws model.WebSite, err error) {
-	var tmp []model.WebSite
-	_, err = app.GetOrm().Context.QueryTable(new(model.WebSite)).
-		Filter("id", webSite).
+func getWebsite(name string) (ws model.EnterpriseWebSite, err error) {
+	var tmp []model.EnterpriseWebSite
+	_, err = app.GetOrm().Context.QueryTable(new(model.EnterpriseWebSite)).
+		Filter("Name", name).
 		All(&tmp)
 	if len(tmp) > 0 {
 		ws = tmp[0]

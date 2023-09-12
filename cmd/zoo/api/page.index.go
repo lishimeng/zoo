@@ -4,7 +4,6 @@ import (
 	"github.com/kataras/iris/v12"
 	"github.com/lishimeng/app-starter/tool"
 	"github.com/lishimeng/home/internal/db/model"
-	"github.com/lishimeng/home/internal/etc"
 )
 
 func indexPage(ctx iris.Context) {
@@ -13,13 +12,7 @@ func indexPage(ctx iris.Context) {
 
 	var data IndexPage
 
-	var wsId = etc.Config.Web.WebSiteId
-	if wsId <= 0 {
-		ctx.StatusCode(tool.RespCodeNotFound)
-		return
-	}
-
-	ws, err := getWebsite(wsId)
+	ws, err := getWebsite(AppName)
 	if err != nil {
 		return
 	}
@@ -42,26 +35,24 @@ func indexPage(ctx iris.Context) {
 		return
 	}
 
-	ctx.ViewLayout("layout/main")
-	err = ctx.View("index.html", data)
+	tool.ResponseHtml(ctx, "layout/main", "index.html", data)
 
 	if err != nil {
 		_, _ = ctx.HTML("<h3>%s</h3>", err.Error())
 	}
 }
 
-func buildMetas(ws model.WebSite) (metas Metas) {
+func buildMetas(ws model.EnterpriseWebSite) (metas Metas) {
 	metas = Metas{
 		Keywords:    ws.PageKeywords,
 		Description: ws.PageDescription,
 		Title:       ws.PageTitle,
 		Author:      ws.PageAuthor,
-		Favicon:     ws.Favicon,
 	}
 	return
 }
 
-func buildBanner(ws model.WebSite) (banner Banner, err error) {
+func buildBanner(ws model.EnterpriseWebSite) (banner Banner, err error) {
 	banner = Banner{
 		Title:    ws.BannerTitle,
 		SubTitle: ws.BannerSubTitle,
@@ -75,7 +66,7 @@ func buildBanner(ws model.WebSite) (banner Banner, err error) {
 	return
 }
 
-func buildFooter(ws model.WebSite) (footer Footer, err error) {
+func buildFooter(ws model.EnterpriseWebSite) (footer Footer, err error) {
 
 	var links []Link
 	var logoLink Link
@@ -84,17 +75,6 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 	if err != nil {
 		return
 	}
-
-	if err != nil {
-		return
-	}
-	footer.Copyright = CopyrightTag{
-		Description: ws.Copyright,
-		Link: Link{
-			Name: ws.Name,
-		},
-	}
-
 	footer.Policy, err = getPolicy(ws.Id)
 	if err != nil {
 		return
@@ -132,7 +112,7 @@ func buildFooter(ws model.WebSite) (footer Footer, err error) {
 	return
 }
 
-func buildHeader(ws model.WebSite) (header Header, err error) {
+func buildHeader(ws model.EnterpriseWebSite) (header Header, err error) {
 
 	var link Link
 	link, err = getLogo(ws.Id)

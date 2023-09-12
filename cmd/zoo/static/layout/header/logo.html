@@ -1,1 +1,3 @@
-<a href="{{ .Header.Logo.Url }}" class="navbar-brand">{{ .Header.Logo.Name }}</a>
+{{- with .WebSiteCtx }}
+<a href="{{ .BaseUrl }}" class="navbar-brand">{{ .Logo }}</a>
+{{- end }}

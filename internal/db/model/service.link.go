@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/lishimeng/app-starter"
-	persistence "github.com/lishimeng/go-orm"
+	"github.com/lishimeng/app-starter/persistence"
 )
 
 func GetResource(webSite int, category string) (link Resource, err error) {

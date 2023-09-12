@@ -1,8 +1,9 @@
 package model
 
 import "github.com/lishimeng/app-starter"
+import "github.com/lishimeng/app-starter/cms"
 
-type WebSite struct {
+type EnterpriseWebSite struct {
 	app.Pk
 	Name            string `orm:"column(name);null"`
 	PageKeywords    string `orm:"column(page_keywords);null"`
@@ -12,12 +13,10 @@ type WebSite struct {
 	BannerTitle     string `orm:"column(banner_title);null"`
 	BannerSubTitle  string `orm:"column(banner_sub_title);null"`
 	BannerMedia     string `orm:"column(banner_media);null"`
-	Copyright       string `orm:"column(copyright);null"`
 	CompanyDescribe string `orm:"column(company_describe);null"`
 	CompanyAddress  string `orm:"column(company_address);null"`
 	CompanyTel      string `orm:"column(company_tel);null"`
 	CompanyEmail    string `orm:"column(company_email);null"`
-	Favicon         string `orm:"column(favicon);null"`
 	app.TableChangeInfo
 }
 
@@ -68,10 +67,11 @@ const (
 
 func Tables() (t []interface{}) {
 	t = append(t,
-		new(WebSite),
+		new(EnterpriseWebSite),
 		new(Resource),
 		new(ResourceGroup),
 		new(GroupDetail),
+		new(cms.WebSite),
 	)
 	return
 }
