@@ -38,17 +38,8 @@ type Banner struct {
 
 // Footer 底部区域
 type Footer struct {
-	Copyright CopyrightTag
-	Policy    PolicyTag
-
-	Icp    Link
-	Police Link
-
-	CompanyDescribe CompanyDescribe
-	CompanyAddress  CompanyAddress
-	FriendlyLinks   FriendlyLinks
-	SiteMap         SiteMap
-	Links           []FooterLinks
+	CompanyAddress CompanyAddress
+	Links          []FooterLinks
 }
 
 type FooterLinks struct {
@@ -85,23 +76,10 @@ type CompanyAddress struct {
 	Call  string
 }
 
-type SiteMap struct {
-	Links []Link
-}
-
-type FriendlyLinks struct {
-	Links []Link
-}
-
 type Link struct {
 	Url   string
 	Name  string
 	Media string
 	Index int
 	Outer bool // 外链
-}
-
-type CompanyDescribe struct {
-	Logo
-	Describe string
 }

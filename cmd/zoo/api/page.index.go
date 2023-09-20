@@ -28,7 +28,6 @@ func indexPage(ctx iris.Context) {
 	if err != nil {
 		return
 	}
-
 	// build header
 	data.Header, err = buildHeader(ws)
 	if err != nil {
@@ -68,41 +67,10 @@ func buildBanner(ws model.EnterpriseWebSite) (banner Banner, err error) {
 
 func buildFooter(ws model.EnterpriseWebSite) (footer Footer, err error) {
 
-	var links []Link
-	var logoLink Link
-
-	logoLink, err = getLogo(ws.Id)
-	if err != nil {
-		return
-	}
-	footer.Policy, err = getPolicy(ws.Id)
-	if err != nil {
-		return
-	}
-
-	footer.Police, err = getPolice(ws.Id)
-	if err != nil {
-		return
-	}
-
-	footer.Icp, err = getIcp(ws.Id)
-	if err != nil {
-		return
-	}
-
-	footer.CompanyDescribe = CompanyDescribe{
-		Logo:     Logo{Link: logoLink},
-		Describe: ws.CompanyDescribe,
-	}
-
 	footer.CompanyAddress = CompanyAddress{
 		Addr:  ws.CompanyAddress,
 		Email: ws.CompanyEmail,
 		Call:  ws.CompanyTel,
-	}
-
-	footer.SiteMap = SiteMap{
-		Links: links,
 	}
 
 	footer.Links, err = GetFooterLinks(ws.Id)

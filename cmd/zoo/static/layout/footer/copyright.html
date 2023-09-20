@@ -9,6 +9,12 @@
                     <span> | </span>
                     <a href="https://beian.miit.gov.cn/" target="_blank">{{ .Icp }}</a>
                     {{- end }}
+                    {{- with .WebSiteCtx.Attr1 }}
+                    <span> | </span>
+                    <a target="_blank" href="{{- . }}">
+                        <img src="https://program.xinchacha.com/xyt/xcc_small_ssl.png" style="width:20px;highet:20px">
+                    </a>
+                    {{- end }}
                 </p>
             </div>
         </div>

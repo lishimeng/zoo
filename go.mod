@@ -6,7 +6,7 @@ require (
 	github.com/beego/beego/v2 v2.1.1
 	github.com/kataras/iris/v12 v12.2.0
 	github.com/lib/pq v1.10.5
-	github.com/lishimeng/app-starter v1.14.2
+	github.com/lishimeng/app-starter v1.14.4
 	github.com/lishimeng/go-log v1.0.0
 )
 

@@ -33,30 +33,6 @@ func getLogo(webSite int) (link Link, err error) {
 	return
 }
 
-func getPolicy(webSite int) (p PolicyTag, err error) {
-	policy, err := getLink(webSite, model.CategoryPrivatePolicy)
-	if err != nil {
-		return
-	}
-	tou, err := getLink(webSite, model.CategoryTermOfUse)
-	if err != nil {
-		return
-	}
-	p.PrivatePolicy = policy
-	p.TermOfUse = tou
-	return
-}
-
-func getPolice(webSite int) (link Link, err error) {
-	link, err = getLink(webSite, model.CategoryPolice)
-	return
-}
-
-func getIcp(webSite int) (link Link, err error) {
-	link, err = getLink(webSite, model.CategoryIcp)
-	return
-}
-
 func getLink(webSite int, category string) (link Link, err error) {
 	t, err := model.GetResource(webSite, category)
 	if err != nil {

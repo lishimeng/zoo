@@ -1,15 +1,5 @@
-
-<div class="col-lg-3 col-md-6"><a href="{{ .Header.Logo.Url }}" class="brand">{{ .Header.Logo.Name }}</a>
-  {{- with .PageCtx.Footer.CompanyAddress }}
-  <ul class="contact-info list-unstyled">
-    <li><a href="mailto:{{ .Email }}">{{ .Email }}</a></li>
-    <li><a href="tel:{{ .Call }}">{{ .Call }}</a></li>
-  </ul>
-  <ul class="social-icons list-inline">
-    <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-    <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-    <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-    <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-  </ul>
+<div class="col-lg-3 col-md-6">
+  {{- with .WebSiteCtx }}
+  <a class="brand">{{ .Logo }}</a>
   {{- end }}
 </div>
